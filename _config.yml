@@ -1,0 +1,14 @@
+title: Lang Playground Blog
+description: Development notes for an experimental language-learning game.
+theme: minima
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+url: ""
+baseurl: ""
+include:
+  - demos
+plugins:
+  - jekyll-feed
+minima:
+  social_links: []
+header_pages: []
