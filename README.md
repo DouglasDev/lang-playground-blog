@@ -2,6 +2,12 @@
 
 Simple Jekyll blog for documenting an experimental language-learning game and publishing playable prototype builds with GitHub Pages.
 
+This repository is currently configured as a GitHub Pages project site at:
+
+```text
+https://douglasdev.github.io/lang-playground-blog/
+```
+
 ## What this repository is for
 
 - Write development updates as Markdown blog posts.
@@ -42,7 +48,14 @@ http://127.0.0.1:4000/
 
 GitHub Pages will build the Jekyll site automatically using the repository contents.
 
-If you publish this as a project site instead of `<your-username>.github.io`, set `baseurl` in `_config.yml` to the repository name and prefer the include-based embed helper so iframe URLs are generated correctly.
+This repo is set up as a project site, so `_config.yml` includes:
+
+```yml
+url: "https://douglasdev.github.io"
+baseurl: "/lang-playground-blog"
+```
+
+If the repository name changes later, update `baseurl` to match the new repo name.
 
 ## Add a new blog post
 
@@ -93,18 +106,18 @@ demos/catch-chant/v2/index.html
 
 ## Embed a demo in a post
 
-Use a normal iframe in any Markdown post:
+If you use a normal iframe in Markdown, include the repo prefix for project sites:
 
 ```html
 <iframe
-  src="/demos/catch-chant/v1/index.html"
+  src="/lang-playground-blog/demos/catch-chant/v1/index.html"
   width="800"
   height="600"
   loading="lazy">
 </iframe>
 ```
 
-For a responsive wrapper with the site's built-in styling, use:
+The safer option is the built-in include, which automatically respects `baseurl`:
 
 ```liquid
 {% include demo-iframe.html

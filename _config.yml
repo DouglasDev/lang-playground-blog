@@ -3,8 +3,8 @@ description: Development notes for an experimental language-learning game.
 theme: minima
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
-url: ""
-baseurl: ""
+url: "https://douglasdev.github.io"
+baseurl: "/lang-playground-blog"
 include:
   - demos
 plugins:

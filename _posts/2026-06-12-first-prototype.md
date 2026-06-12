@@ -14,11 +14,9 @@ This fits the long-term workflow well:
 
 Here is the first embedded demo placeholder:
 
-<iframe
+{% include demo-iframe.html
   src="/demos/catch-chant/v1/index.html"
-  width="800"
-  height="600"
-  loading="lazy">
-</iframe>
+  title="Catch Chant Prototype v1"
+%}
 
 Future iterations can follow the same path, for example `v2` and `v3`, without breaking this post.
