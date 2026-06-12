@@ -117,7 +117,7 @@ If you use a normal iframe in Markdown, include the repo prefix for project site
 </iframe>
 ```
 
-The safer option is the built-in include, which automatically respects `baseurl`:
+The safer option is the built-in include, which automatically uses the full GitHub Pages URL:
 
 ```liquid
 {% include demo-iframe.html
