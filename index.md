@@ -15,7 +15,3 @@ The project explores:
 - AI-driven characters
 
 Posts here will document prototypes, design decisions, and playable experiments as the project evolves.
-
-## Playable demos
-
-Prototype builds can be published directly under `/demos/` and embedded inside posts, which keeps the workflow simple and durable for a solo developer.
