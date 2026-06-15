@@ -1,8 +1,9 @@
-name: Deploy Site
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -31,16 +32,22 @@ jobs:
         with:
           version: 10.12.4
 
+      - name: Cache Eleventy .cache
+        uses: actions/cache@v4
+        with:
+          path: ./.cache
+          key: ${{ runner.os }}-eleventy-fetch-cache
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build site
-        run: pnpm build
+        run: pnpm run build-ghpages
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: _site/
 
   deploy:
     needs: build
