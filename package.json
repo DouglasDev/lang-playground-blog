@@ -1,0 +1,16 @@
+{
+  "name": "lang-playground-blog",
+  "private": true,
+  "packageManager": "pnpm@10.12.4",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "ELEVENTY_PATH_PREFIX=/ eleventy --serve",
+    "build": "eleventy",
+    "start": "ELEVENTY_PATH_PREFIX=/ eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

@@ -1,9 +1,9 @@
 ---
-layout: post
 title: "First Prototype"
+date: 2026-06-12
 ---
 
-The first step for this blog is a tiny placeholder build pipeline: keep the Jekyll site simple, publish static prototypes under `/demos/`, and embed them directly in posts.
+The first step for this blog is a tiny placeholder build pipeline: keep the site simple, publish static prototypes under `/demos/`, and embed them directly in posts.
 
 This fits the long-term workflow well:
 
@@ -14,9 +14,6 @@ This fits the long-term workflow well:
 
 Here is the first embedded demo placeholder:
 
-{% include demo-iframe.html
-  src="/demos/catch-chant/v1/index.html"
-  title="Catch Chant Prototype v1"
-%}
+{% demoIframe "/demos/catch-chant/v1/index.html", "Catch Chant Prototype v1" %}
 
 Future iterations can follow the same path, for example `v2` and `v3`, without breaking this post.

@@ -1,12 +1,62 @@
 # Lang Playground Blog
 
-Simple Jekyll blog for documenting an experimental language-learning game and publishing playable prototype builds with GitHub Pages.
+Simple Eleventy blog for documenting an experimental language-learning game and publishing playable prototype builds with GitHub Pages.
 
-This repository is currently configured as a GitHub Pages project site at:
+Production URL:
 
 ```text
 https://douglasdev.github.io/lang-playground-blog/
 ```
+
+## Local development
+
+This repo uses Node `24` and `pnpm`.
+
+If `pnpm` is not active yet on your machine:
+
+```bash
+source ~/.nvm/nvm.sh
+corepack enable
+corepack prepare pnpm@10.12.4 --activate
+```
+
+Install dependencies and start the dev server:
+
+```bash
+source ~/.nvm/nvm.sh
+pnpm install
+pnpm dev
+```
+
+The local site will be available at:
+
+```text
+http://localhost:8080/
+```
+
+`pnpm dev` serves the site with no path prefix locally, while production builds keep the GitHub Pages project path.
+
+If port `8080` is already in use, Eleventy will automatically move to the next open port, usually `8081`.
+
+## Build for production
+
+```bash
+source ~/.nvm/nvm.sh
+pnpm build
+```
+
+The generated static site is written to `_site/`.
+
+## GitHub Pages deployment
+
+This repo now deploys through GitHub Actions instead of GitHub Pages' built-in Jekyll pipeline.
+
+1. Push the repository to GitHub.
+2. In GitHub, open `Settings` -> `Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Push to `main`.
+
+The workflow in `.github/workflows/deploy.yml` will build the Eleventy site and publish `_site/`.
 
 ## What this repository is for
 
@@ -15,67 +65,31 @@ https://douglasdev.github.io/lang-playground-blog/
 - Embed those demos inside blog posts with iframes.
 - Keep old demo versions online so older posts never break.
 
-## Install dependencies
-
-1. Install Ruby and Bundler.
-2. From the repository root, run:
-
-```bash
-bundle install
-```
-
-## Run locally
-
-```bash
-bundle exec jekyll serve
-```
-
-The site will be available at:
-
-```text
-http://127.0.0.1:4000/
-```
-
-## Publish to GitHub Pages
-
-1. Create a GitHub repository for this project.
-2. For the simplest setup, use a user site repository such as `<your-username>.github.io`.
-3. Push this repository to GitHub.
-4. In GitHub, open `Settings` -> `Pages`.
-5. Set the source to `Deploy from a branch`.
-6. Choose your publishing branch, usually `main`, and the `/ (root)` folder.
-7. Commit and push future changes to that branch.
-
-GitHub Pages will build the Jekyll site automatically using the repository contents.
-
-This repo is set up as a project site, so `_config.yml` includes:
-
-```yml
-url: "https://douglasdev.github.io"
-baseurl: "/lang-playground-blog"
-```
-
-If the repository name changes later, update `baseurl` to match the new repo name.
-
 ## Add a new blog post
 
-1. Create a new file in `_posts/`.
-2. Name it using Jekyll's required format:
+1. Create a new file in `src/posts/`.
+2. Name it using:
 
 ```text
 YYYY-MM-DD-post-title.md
 ```
 
-3. Add front matter at the top:
+3. Add front matter:
 
 ```md
 ---
-layout: post
 title: "Your Post Title"
+date: 2026-06-14
 ---
 ```
 
 4. Write the body in Markdown below the front matter.
+
+Post URLs are generated automatically in this format:
+
+```text
+/YYYY/MM/DD/post-title/
+```
 
 ## Add a new demo
 
@@ -98,30 +112,12 @@ Recommended workflow:
 3. Keep existing version folders in place so older blog posts continue to work.
 4. Link new posts to the newest version when appropriate.
 
-For example, a Phaser export could live at:
-
-```text
-demos/catch-chant/v2/index.html
-```
-
 ## Embed a demo in a post
 
-If you use a normal iframe in Markdown, include the repo prefix for project sites:
+Use the Eleventy shortcode:
 
-```html
-<iframe
-  src="/lang-playground-blog/demos/catch-chant/v1/index.html"
-  width="800"
-  height="600"
-  loading="lazy">
-</iframe>
+```njk
+{% demoIframe "/demos/catch-chant/v1/index.html", "Catch Chant Prototype v1" %}
 ```
 
-The safer option is the built-in include, which automatically uses the full GitHub Pages URL:
-
-```liquid
-{% include demo-iframe.html
-  src="/demos/catch-chant/v1/index.html"
-  title="Catch Chant Prototype v1"
-%}
-```
+The shortcode automatically handles the local root path and the production GitHub Pages project path.

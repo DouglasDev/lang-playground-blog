@@ -1,6 +1,4 @@
 _site/
-.jekyll-cache/
-.jekyll-metadata
-.bundle/
-vendor/bundle/
+node_modules/
+.pnpm-store/
 .DS_Store
